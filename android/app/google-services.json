@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "980923134518",
+    "firebase_url": "https://alroya-app.firebaseio.com",
+    "project_id": "alroya-app",
+    "storage_bucket": "alroya-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980923134518:android:78ccf2855bb5f1dad2de97",
+        "android_client_info": {
+          "package_name": "atyaf.com.alroyanew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980923134518-co4jrjfanan9kugj4g8aq534mv08d7m2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClbC3BhUXQaljCxZli2Q5uHmubuZ2w_Wo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980923134518-co4jrjfanan9kugj4g8aq534mv08d7m2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
