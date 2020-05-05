@@ -45,9 +45,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      'assets/images/alroya_app1.png',
-      fit: BoxFit.fill,
-    );
+    return Scaffold(
+        body: Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Image.asset(
+        'assets/images/alroya_app1.jpg',
+        fit: BoxFit.fill,
+      ),
+    ));
   }
 }
