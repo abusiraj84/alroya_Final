@@ -247,17 +247,41 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                               placeholder: 'assets/images/loader.gif',
                               image: widget.data[index].imageUrl,
                             ),
+
+                            //First
+
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 10),
-                              child: Text(
-                                widget.data[index].title,
-                                style: TextStyle(
-                                    fontFamily: "sst-arabic-bold",
-                                    fontSize: 18,
-                                    height: 1.3),
-                                textAlign: TextAlign.right,
-                                maxLines: 3,
+                              child: Container(
+                                height: 70,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      widget.data[index].title,
+                                      style: TextStyle(
+                                          fontFamily: "sst-arabic-bold",
+                                          fontSize: 18,
+                                          height: 1.3),
+                                      textAlign: TextAlign.right,
+                                      maxLines: 3,
+                                    ),
+                                    Container(
+                                      color: Colors.grey.shade100,
+                                      padding: EdgeInsets.all(3),
+                                      child: Text(
+                                        widget.data[index].time,
+                                        style: TextStyle(
+                                            fontFamily: "SST-Arabic-Medium",
+                                            fontSize: 12,
+                                            color: Colors.grey.shade600),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -344,37 +368,47 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                                   image: widget.data[index].imageUrl,
                                 ),
                                 Spacer(),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Container(
-                                        padding:
-                                            EdgeInsets.only(right: 10, left: 0),
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                200,
-                                        child: Text(
-                                          widget.data[index].title,
-                                          style: TextStyle(
-                                              fontFamily: "SST-Arabic-Medium",
-                                              fontSize: 16,
-                                              height: 1.5),
-                                          textAlign: TextAlign.right,
-                                          maxLines: 3,
-                                        )),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, right: 10),
-                                      child: Text(
-                                        widget.data[index].time,
-                                        style: TextStyle(
-                                            fontFamily: "SST-Arabic-Medium",
-                                            fontSize: 12,
-                                            color: Colors.grey.shade600),
-                                      ),
-                                    )
-                                  ],
+                                Container(
+                                  height: 105,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Container(
+                                          padding: EdgeInsets.only(
+                                              right: 10, left: 0),
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              200,
+                                          child: Text(
+                                            widget.data[index].title,
+                                            style: TextStyle(
+                                                fontFamily: "SST-Arabic-Medium",
+                                                fontSize: 16,
+                                                height: 1.5),
+                                            textAlign: TextAlign.right,
+                                            maxLines: 3,
+                                          )),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, right: 10),
+                                        child: Container(
+                                          color: Colors.grey.shade100,
+                                          padding: EdgeInsets.all(3),
+                                          child: Text(
+                                            widget.data[index].time,
+                                            style: TextStyle(
+                                                fontFamily: "SST-Arabic-Medium",
+                                                fontSize: 12,
+                                                color: Colors.grey.shade600),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ]),
                         ),

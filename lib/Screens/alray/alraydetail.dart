@@ -99,10 +99,10 @@ class _AlrayDetailState extends State<AlrayDetail> {
                                     InkWell(
                                       onTap: () {
                                         Share.share(
-                                            'https://alroya.om/post/' +
-                                                widget.id.toString() +
+                                            content['data']['title'] +
                                                 ' - ' +
-                                                content['data']['title'],
+                                                'https://alroya.om/post/' +
+                                                widget.id.toString(),
                                             subject: content['data']['title']);
                                         HapticFeedback.mediumImpact();
                                       },
@@ -122,6 +122,14 @@ class _AlrayDetailState extends State<AlrayDetail> {
                                     CircleAvatar(
                                       backgroundImage: NetworkImage(authImgurl),
                                       radius: 20,
+                                      child: Opacity(
+                                        opacity: 0.1,
+                                        child: Icon(
+                                          SFSymbols.person,
+                                          size: 20,
+                                          color: Colors.white,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

@@ -80,7 +80,7 @@ class _MoreState extends State<More> {
   }
 
   _snapchat() async {
-    const url = 'https://www.instagram.com/alroyanewspaper/';
+    const url = 'https://www.snapchat.com/alroyanewspaper';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

@@ -80,7 +80,7 @@ class _FeaturedViewState extends State<FeaturedView> {
                                 content['data']['featured'][0]['title'],
                                 style: TextStyle(
                                     fontFamily: "sst-arabic-bold",
-                                    fontSize: 15,
+                                    fontSize: 18,
                                     height: 1.3),
                                 textAlign: TextAlign.right,
                                 maxLines: 2,
@@ -89,12 +89,16 @@ class _FeaturedViewState extends State<FeaturedView> {
                             Padding(
                               padding:
                                   const EdgeInsets.only(top: 8.0, right: 20),
-                              child: Text(
-                                content['data']['featured'][0]['time'],
-                                style: TextStyle(
-                                    fontFamily: "SST-Arabic-Medium",
-                                    fontSize: 12,
-                                    color: Colors.grey.shade600),
+                              child: Container(
+                                color: Colors.grey.shade100,
+                                padding: EdgeInsets.all(3),
+                                child: Text(
+                                  content['data']['featured'][0]['time'],
+                                  style: TextStyle(
+                                      fontFamily: "SST-Arabic-Medium",
+                                      fontSize: 12,
+                                      color: Colors.grey.shade600),
+                                ),
                               ),
                             )
                           ],
@@ -175,41 +179,51 @@ class _FeaturedViewState extends State<FeaturedView> {
                                     image: imgurl,
                                   ),
                                   Spacer(),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Container(
-                                          padding: EdgeInsets.only(
-                                              right: 10, left: 0),
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width -
-                                              200,
-                                          child: Text(
-                                            content['data']['featured']
-                                                [index + 1]['title'],
-                                            style: TextStyle(
-                                                fontFamily: "SST-Arabic-Medium",
-                                                fontSize: 16,
-                                                height: 1.5),
-                                            textAlign: TextAlign.right,
-                                            maxLines: 3,
-                                          )),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8.0, right: 10),
-                                        child: Text(
-                                          content['data']['featured'][index + 1]
-                                              ['time'],
-                                          style: TextStyle(
-                                              fontFamily: "SST-Arabic-Medium",
-                                              fontSize: 12,
-                                              color: Colors.grey.shade600),
-                                        ),
-                                      )
-                                    ],
+                                  Container(
+                                    height: 105,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Container(
+                                            padding: EdgeInsets.only(
+                                                right: 10, left: 0),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width -
+                                                200,
+                                            child: Text(
+                                              content['data']['featured']
+                                                  [index + 1]['title'],
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      "SST-Arabic-Medium",
+                                                  fontSize: 16,
+                                                  height: 1.5),
+                                              textAlign: TextAlign.right,
+                                              maxLines: 3,
+                                            )),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, right: 10),
+                                          child: Container(
+                                            color: Colors.grey.shade100,
+                                            padding: EdgeInsets.all(3),
+                                            child: Text(
+                                              content['data']['featured']
+                                                  [index + 1]['time'],
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      "SST-Arabic-Medium",
+                                                  fontSize: 12,
+                                                  color: Colors.grey.shade600),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ]),
                           ),

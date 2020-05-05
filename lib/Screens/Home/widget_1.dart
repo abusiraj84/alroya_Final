@@ -7,8 +7,8 @@ import 'package:page_transition/page_transition.dart';
 import '../details/detailview.dart';
 import '../../Tools/globals.dart' as g;
 
-class ThirdNews extends StatelessWidget {
-  const ThirdNews({Key key}) : super(key: key);
+class Widget_1 extends StatelessWidget {
+  const Widget_1({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -190,229 +190,258 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     FeaturedView(),
                     SizedBox(height: 10),
-                    // SecondNews(),
-                    ThirdNews(),
+                    Widget_1(),
                     SizedBox(height: 10),
+                    latestNews()
                   ],
                 );
               },
             ),
-            ListView.builder(
-              padding: EdgeInsets.symmetric(vertical: 0),
-              shrinkWrap: true,
-              physics: ClampingScrollPhysics(),
-              itemCount: data.length + 1,
-              itemBuilder: (BuildContext context, int index) {
-                if (index == 0 && data.length > 0) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 20, top: 10),
-                    child: Container(
-                        height: 370,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: g.dark.withOpacity(0.2),
-                              blurRadius: 1.0,
-                              spreadRadius: 0.1,
-                              offset: Offset(
-                                0.0,
-                                0.2,
-                              ),
-                            )
-                          ],
-                        ),
-                        child: GestureDetector(
-                          onTap: () {
-                            HapticFeedback.mediumImpact();
+          ],
+        ));
+  }
 
-                            Navigator.push(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.downToUp,
-                                    child: DetailView(data[index].id)));
-                          },
-                          child: FadeAnimation(
-                            0.5,
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                FadeInImage.assetNetwork(
-                                  height: 260,
-                                  width: double.infinity,
-                                  fit: BoxFit.cover,
-                                  placeholder: 'assets/images/loader.gif',
-                                  image: data[index].imageUrl,
-                                ),
-                                FadeAnimation(
-                                  0.5,
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 10),
+  ListView latestNews() {
+    return ListView.builder(
+      padding: EdgeInsets.symmetric(vertical: 0),
+      shrinkWrap: true,
+      physics: ClampingScrollPhysics(),
+      itemCount: data.length + 1,
+      itemBuilder: (BuildContext context, int index) {
+        if (index == 0 && data.length > 0) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 20, top: 10),
+            child: Container(
+                height: 370,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: g.dark.withOpacity(0.2),
+                      blurRadius: 1.0,
+                      spreadRadius: 0.1,
+                      offset: Offset(
+                        0.0,
+                        0.2,
+                      ),
+                    )
+                  ],
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    HapticFeedback.mediumImpact();
+
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.downToUp,
+                            child: DetailView(data[index].id)));
+                  },
+                  child: FadeAnimation(
+                    0.5,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        FadeInImage.assetNetwork(
+                          height: 260,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                          placeholder: 'assets/images/loader.gif',
+                          image: data[index].imageUrl,
+                        ),
+                        FadeAnimation(
+                          0.5,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            child: Container(
+                              height: 70,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    data[index].title,
+                                    style: TextStyle(
+                                        fontFamily: "sst-arabic-bold",
+                                        fontSize: 18,
+                                        height: 1.3),
+                                    textAlign: TextAlign.right,
+                                    maxLines: 3,
+                                  ),
+                                  Container(
+                                    color: Colors.grey.shade100,
+                                    padding: EdgeInsets.all(3),
                                     child: Text(
-                                      data[index].title,
+                                      data[index].time,
                                       style: TextStyle(
-                                          fontFamily: "sst-arabic-bold",
-                                          fontSize: 18,
-                                          height: 1.3),
+                                          fontSize: 12,
+                                          color: Colors.grey.shade500),
                                       textAlign: TextAlign.right,
-                                      maxLines: 3,
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        )),
-                  );
-                } else {
-                  if (index == data.length) {
-                    return Container(
-                      height: 70,
-                      child: Visibility(
-                          visible: isLoading,
-                          child: Column(
+                        ),
+                      ],
+                    ),
+                  ),
+                )),
+          );
+        } else {
+          if (index == data.length) {
+            return Container(
+              height: 70,
+              child: Visibility(
+                  visible: isLoading,
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 0),
+                      Container(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 3,
+                          )),
+                      SizedBox(
+                        height: 40,
+                        width: MediaQuery.of(context).size.width,
+                        child: Center(
+                          child: Container(
+                              height: 400,
+                              child: Padding(
+                                padding: const EdgeInsets.all(0.0),
+                                child: Text(
+                                  'جاري تحميل المزيد ...',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                              )),
+                        ),
+                      ),
+                    ],
+                  )),
+            );
+          }
+          return FadeAnimation(
+            0.4,
+            Column(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: g.dark.withOpacity(0.2),
+                        blurRadius: 1.0,
+                        spreadRadius: 0.1,
+                        offset: Offset(
+                          0.0,
+                          0.2,
+                        ),
+                      )
+                    ],
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      HapticFeedback.mediumImpact();
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.downToUp,
+                              child: DetailView(data[index].id)));
+                    },
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          FadeInImage.assetNetwork(
+                            width: 160,
+                            height: 105,
+                            fit: BoxFit.cover,
+                            placeholder: 'assets/images/loader.gif',
+                            image: data[index].imageUrl,
+                          ),
+                          Spacer(),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              SizedBox(height: 0),
-                              Container(
-                                  height: 20,
-                                  width: 20,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 3,
-                                  )),
-                              SizedBox(
-                                height: 40,
-                                width: MediaQuery.of(context).size.width,
-                                child: Center(
-                                  child: Container(
-                                      height: 400,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(0.0),
-                                        child: Text(
-                                          'جاري تحميل المزيد ...',
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                      )),
+                              Padding(
+                                padding: EdgeInsets.only(right: 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                      color: Colors.red.shade900,
+                                      width: 3,
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      color: Colors.yellow.shade900,
+                                      width: 2,
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      data[index].categoryTitle,
+                                      style: TextStyle(
+                                          fontFamily: "SST-Arabic-Medium",
+                                          fontSize: 12,
+                                          color: Colors.grey.shade500),
+                                    )
+                                  ],
                                 ),
                               ),
-                            ],
-                          )),
-                    );
-                  }
-                  return FadeAnimation(
-                    0.4,
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: g.dark.withOpacity(0.2),
-                                blurRadius: 1.0,
-                                spreadRadius: 0.1,
-                                offset: Offset(
-                                  0.0,
-                                  0.2,
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(right: 10, left: 0),
+                                width: MediaQuery.of(context).size.width - 200,
+                                child: Text(
+                                  data[index].title,
+                                  style: TextStyle(
+                                      fontFamily: "SST-Arabic-Medium",
+                                      fontSize: 14,
+                                      height: 1.5),
+                                  textAlign: TextAlign.right,
+                                  maxLines: 3,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: 15, right: 10, left: 0),
+                                child: Container(
+                                  color: Colors.grey.shade100,
+                                  padding: EdgeInsets.all(3),
+                                  child: Text(
+                                    data[index].time,
+                                    style: TextStyle(
+                                        fontFamily: "SST-Arabic-Medium",
+                                        fontSize: 12,
+                                        color: Colors.grey.shade600),
+                                  ),
                                 ),
                               )
                             ],
                           ),
-                          child: GestureDetector(
-                            onTap: () {
-                              HapticFeedback.mediumImpact();
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      type: PageTransitionType.downToUp,
-                                      child: DetailView(data[index].id)));
-                            },
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  FadeInImage.assetNetwork(
-                                    width: 160,
-                                    height: 105,
-                                    fit: BoxFit.cover,
-                                    placeholder: 'assets/images/loader.gif',
-                                    image: data[index].imageUrl,
-                                  ),
-                                  Spacer(),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 10),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: <Widget>[
-                                            Container(
-                                              color: Colors.red.shade900,
-                                              width: 2,
-                                              height: 13,
-                                            ),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                            Text(
-                                              data[index].categoryTitle,
-                                              style: TextStyle(
-                                                  fontFamily:
-                                                      "SST-Arabic-Medium",
-                                                  fontSize: 12,
-                                                  color: Colors.grey.shade500),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        padding:
-                                            EdgeInsets.only(right: 10, left: 0),
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                200,
-                                        child: Text(
-                                          data[index].title,
-                                          style: TextStyle(
-                                              fontFamily: "SST-Arabic-Medium",
-                                              fontSize: 14,
-                                              height: 1.5),
-                                          textAlign: TextAlign.right,
-                                          maxLines: 3,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 15, right: 10, left: 0),
-                                        child: Text(
-                                          data[index].time,
-                                          style: TextStyle(
-                                              fontFamily: "SST-Arabic-Medium",
-                                              fontSize: 12,
-                                              color: Colors.grey.shade600),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ]),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                      ],
-                    ),
-                  );
-                }
-              },
-            )
-          ],
-        ));
+                        ]),
+                  ),
+                ),
+                SizedBox(height: 10),
+              ],
+            ),
+          );
+        }
+      },
+    );
   }
 }
 

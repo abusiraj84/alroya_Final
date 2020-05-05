@@ -96,20 +96,20 @@ class _DetailViewState extends State<DetailView> {
                                 InkWell(
                                   onTap: () {
                                     Share.share(
-                                        'https://alroya.om/post/' +
-                                            widget.id.toString() +
+                                        content['data']['title'] +
                                             ' - ' +
-                                            content['data']['title'],
+                                            'https://alroya.om/post/' +
+                                            widget.id.toString(),
                                         subject: content['data']['title']);
                                     HapticFeedback.mediumImpact();
                                   },
                                   child: CircleAvatar(
-                                    backgroundColor: Colors.white,
+                                    backgroundColor: g.dark,
                                     radius: 20,
                                     child: Icon(
-                                      Icons.share,
+                                      SFSymbols.square_arrow_up,
                                       size: 20,
-                                      color: g.dark,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
