@@ -186,6 +186,7 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
         appBar: AppBar(
           leading: Container(),
           title: Text("الرأي"),
+          centerTitle: true,
         ),
         body: RefreshIndicator(
           onRefresh: widget.handleRefresh,
@@ -249,8 +250,7 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                     child: Container(
                       color: Colors.white,
                       child: Padding(
-                        // error render box overflow
-                        padding: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.all(20.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -296,7 +296,6 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                                   width: 20,
                                 ),
                                 Container(
-                                  width: 280,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:

@@ -199,6 +199,7 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
       appBar: AppBar(
         title: Text(widget.pageTitle),
         centerTitle: true,
+        leading: Container(),
       ),
       body: RefreshIndicator(
         key: refreshKey,
