@@ -249,7 +249,8 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                     child: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        // error render box overflow
+                        padding: const EdgeInsets.all(5.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,

@@ -169,32 +169,8 @@ class _DetailViewState extends State<DetailView> {
                                 children: <Widget>[
                                   SizedBox(height: 20),
                                   // first ads here :)
-                                  FadeAnimation(
-                                    0.6,
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        GestureDetector(
-                                            onTap: () {
-                                              HapticFeedback.mediumImpact();
+                                  _getAds(content, "ads1"),
 
-                                              _openAds(content['ads1']['link']);
-                                            },
-                                            child: Container(
-                                              child: Image.network(
-                                                _apiService.getImage(
-                                                    content['ads1']['img']
-                                                        .toString()),
-                                                fit: BoxFit.fill,
-                                              ),
-                                            )),
-                                        SizedBox(height: 10),
-                                      ],
-                                    ),
-                                  ),
                                   SizedBox(height: 10),
 
                                   FadeAnimation(
@@ -239,32 +215,7 @@ class _DetailViewState extends State<DetailView> {
                                               TextAlign.right),
                                     ),
                                   ),
-                                  FadeAnimation(
-                                    0.6,
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        GestureDetector(
-                                            onTap: () {
-                                              HapticFeedback.mediumImpact();
-
-                                              _openAds(content['ads2']['link']);
-                                            },
-                                            child: Container(
-                                              child: Image.network(
-                                                _apiService.getImage(
-                                                    content['ads2']['img']
-                                                        .toString()),
-                                                fit: BoxFit.fill,
-                                              ),
-                                            )),
-                                        SizedBox(height: 10),
-                                      ],
-                                    ),
-                                  ),
+                                  _getAds(content, "ads2"),
                                   Footer(),
                                 ],
                               ),
@@ -291,6 +242,35 @@ class _DetailViewState extends State<DetailView> {
       await launch(url);
     } else {
       throw 'Could not launch $url';
+    }
+  }
+
+  _getAds(Map content, String ads) {
+    if (content[ads]['adsStatus'] == 0) {
+      return FadeAnimation(
+        0.6,
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            GestureDetector(
+                onTap: () {
+                  HapticFeedback.mediumImpact();
+
+                  _openAds(content[ads]['link']);
+                },
+                child: Container(
+                  child: Image.network(
+                    _apiService.getImage(content[ads]['img'].toString()),
+                    fit: BoxFit.fill,
+                  ),
+                )),
+            SizedBox(height: 10),
+          ],
+        ),
+      );
+    } else {
+      return Container();
     }
   }
 }

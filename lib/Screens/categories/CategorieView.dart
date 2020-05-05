@@ -75,6 +75,7 @@ class _CategorieViewState extends State<CategorieView> {
                 kind: item['kind'],
                 adsImg: 'https://alroya.om/' + item['img'],
                 link: item['link'],
+                adsStatus: item['adsStatus'],
               ));
             } else {
               print('this is post');
@@ -137,6 +138,7 @@ class Posts {
   String kind;
   String link;
   String adsImg;
+  int adsStatus;
 
   Posts(
       {this.id,
@@ -145,6 +147,7 @@ class Posts {
       this.time,
       this.kind,
       this.link,
+      this.adsStatus,
       this.adsImg});
 }
 // end posts model map
@@ -417,7 +420,8 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                     ],
                   ),
                 );
-              } else if ((widget.data[index].kind == 'ads')) {
+              } else if ((widget.data[index].kind == 'ads') &&
+                  widget.data[index].adsStatus == 1) {
                 return FadeAnimation(
                   0.6,
                   Column(
@@ -440,6 +444,8 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                     ],
                   ),
                 );
+              } else {
+                return Container();
               }
             }
           },

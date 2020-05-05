@@ -74,6 +74,7 @@ class _CategorieView2State extends State<CategorieView2> {
               data.add(Posts(
                 kind: item['kind'],
                 adsImg: 'https://alroya.om/' + item['img'],
+                adsStatus: item['adsStatus'],
                 link: item['link'],
               ));
             } else {
@@ -136,6 +137,7 @@ class Posts {
   //ads
   String kind;
   String link;
+  int adsStatus;
   String adsImg;
 
   Posts(
@@ -143,6 +145,7 @@ class Posts {
       this.imageUrl,
       this.title,
       this.time,
+      this.adsStatus,
       this.kind,
       this.link,
       this.adsImg});
@@ -417,7 +420,8 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                     ],
                   ),
                 );
-              } else if ((widget.data[index].kind == 'ads')) {
+              } else if ((widget.data[index].kind == 'ads') &&
+                  widget.data[index].adsStatus == 1) {
                 return FadeAnimation(
                   0.6,
                   Column(
@@ -440,6 +444,8 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                     ],
                   ),
                 );
+              } else {
+                return Container();
               }
             }
           },
